@@ -5,5 +5,9 @@
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.inlayHints.callArgumentNames": "partial",
     "python.analysis.inlayHints.functionReturnTypes": true,
-    "python.analysis.inlayHints.variableTypes": true
+    "python.analysis.inlayHints.variableTypes": true,
+    "cSpell.words": [
+        "sessionmaker",
+        "sqlalchemy"
+    ]
 }

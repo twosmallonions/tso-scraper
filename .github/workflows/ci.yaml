@@ -1,0 +1,19 @@
+name: CI
+on:
+  pull_request:
+    branches: ['main']
+
+jobs:
+  ci:
+    name: Run CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.5.2"
+      - run: uv python install
+      - name: ruff check
+        run: uv run ruff check
+      - name: ruff format
+        run: uv run ruff format --check --diff

@@ -3,7 +3,7 @@ name = "tso-scraper"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = "~=3.12"
+requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.112.1",
     "httpx>=0.27.0",

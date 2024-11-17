@@ -10,4 +10,9 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 EXPOSE 8000
 
+
+LABEL org.opencontainers.image.source="https://github.com/twosmallonions/tso-scraper"
+LABEL org.opencontainers.image.description="TSO recipe scraper"
+LABEL org.opencontainers.image.licenses=MIT
+
 ENTRYPOINT [ "/app/.venv/bin/fastapi", "run", "src/tso_api/main.py" ]

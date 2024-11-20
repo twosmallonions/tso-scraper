@@ -1,13 +1,12 @@
-from datetime import timedelta
 import json
 import logging
 import os
+from datetime import timedelta
 from typing import Any
-import urllib.parse
+from urllib.parse import urlparse
+
 import httpx
 import redis.asyncio as redis
-import urllib
-from urllib.parse import urlparse
 from recipe_scrapers import scrape_html
 
 REDIS_HOST = os.environ['SCRAPER_REDIS_HOST']

@@ -29,8 +29,11 @@ ROOT_CA = load_credentials_from_file(os.environ['SCRAPER_CA_CERT'])
 class Scraper(recipe_pb2_grpc.ScraperService):
     def __init__(self) -> None:
         self.recipe_scrapers = RecipeScrapers()
+
     async def Scrape(  # noqa: N802 # type: ignore
-        self, request: recipe_pb2.ScrapeRequest, context: grpc.aio.ServicerContext
+        self,
+        request: recipe_pb2.ScrapeRequest,
+        context: grpc.aio.ServicerContext,  # noqa: ARG002
     ) -> recipe_pb2.ScrapeResponse:
         recipe = await self.recipe_scrapers.scrape(request.url)
         return recipe_pb2.ScrapeResponse(author=recipe['author'])

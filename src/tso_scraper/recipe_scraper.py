@@ -10,7 +10,7 @@ import redis.asyncio as redis
 from recipe_scrapers import scrape_html
 
 REDIS_HOST = os.environ['SCRAPER_REDIS_HOST']
-REDIS_PORT = os.environ['SCRAPER_REDIS_PORT']
+REDIS_PORT = os.environ.get('SCRAPER_REDIS_PORT', '6379')
 HTTP_USER_AGENT = os.environ.get('SCRAPER_USER_AGENT', 'tso-scraper/0.1')
 
 

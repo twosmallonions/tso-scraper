@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from operator import ge
 import os
 from pathlib import Path
 
@@ -36,7 +37,29 @@ class Scraper(recipe_pb2_grpc.ScraperService):
         context: grpc.aio.ServicerContext,  # noqa: ARG002
     ) -> recipe_pb2.ScrapeResponse:
         recipe = await self.recipe_scrapers.scrape(request.url)
-        return recipe_pb2.ScrapeResponse(author=recipe['author'])
+        ingredient_groups = [
+            recipe_pb2.ScrapeResponse.IngredientGroup(ingredients=ingredient_group['ingredients'], purpose=ingredient_group['purpose'])
+            for ingredient_group in recipe.get('ingredient_groups', [])
+        ]
+        return recipe_pb2.ScrapeResponse(
+            author=recipe.get('author'),
+            canonical_url=recipe.get('canonical_url'),
+            category=recipe.get('category'),
+            cook_time=recipe.get('cook_time'),
+            description=recipe.get('description'),
+            image=recipe.get('image'),
+            ingredients=recipe.get('ingredients', []),
+            instructions=recipe.get('instructions'),
+            instructions_list=recipe.get('instructions_list', []),
+            keywords=recipe.get('keywords', []),
+            language=recipe.get('language'),
+            prep_time=recipe.get('prep_time'),
+            title=recipe.get('title'),
+            total_time=recipe.get('total_time'),
+            cuisine=recipe.get('cuisine'),
+            host=recipe.get('host'),
+            ingredient_groups=ingredient_groups
+        )
 
 
 async def main() -> None:

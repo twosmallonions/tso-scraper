@@ -6,13 +6,13 @@ WORKDIR /app
 COPY . .
 
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-cache --compile-bytecode
+    uv sync --frozen --no-cache --compile-bytecode && \
+    uv pip install .
 
-EXPOSE 8000
-
+EXPOSE 50051
 
 LABEL org.opencontainers.image.source="https://github.com/twosmallonions/tso-scraper"
 LABEL org.opencontainers.image.description="TSO recipe scraper"
 LABEL org.opencontainers.image.licenses=MIT
 
-ENTRYPOINT [ "/app/.venv/bin/fastapi", "run", "src/tso_api/main.py" ]
+ENTRYPOINT [ "/app/.venv/bin/python", "-m", "tso_scraper.main"]

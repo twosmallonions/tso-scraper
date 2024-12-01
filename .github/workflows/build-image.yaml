@@ -49,3 +49,18 @@ jobs:
           tags: |
                 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
                 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.short-hash.outputs.SHA_SHORT }}
+      - uses: actions/github-script@v7
+        id: run-workflow
+        name: Trigger kustomize update
+        with:
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: "twosmallonions",
+              repo: "dist",
+              workflow_id: "tag.yaml",
+              ref: "main",
+              inputs: {
+                image: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}",
+                tag: "${{ steps.short-hash.outputs.SHA_SHORT }}"
+              } 
+            })

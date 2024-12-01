@@ -17,7 +17,7 @@ def load_credentials_from_file(path: str | Path) -> bytes:
         path = Path(path)
 
     if not path.absolute():
-        msg = f"'{path}' path has to be aboslute."
+        msg = f"'{path}' path has to be absolute."
         raise ValueError(msg)
 
     with path.open('rb') as f:

@@ -120,6 +120,19 @@ wheels = [
 ]
 
 [[package]]
+name = "grpcio-reflection"
+version = "1.68.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "grpcio" },
+    { name = "protobuf" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4a/8e/462364ea8251ddfd4b0898d271835ab43ba8932cee08c63e26cefc32a09d/grpcio_reflection-1.68.0.tar.gz", hash = "sha256:31a416001fc1b0ee32ba5aa67cf67fb8228f2bf1097001b6313c9fb08680322a", size = 18808 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ce/ff/8d3335489019bc1322a14caaffc3ae4fabac78d3e4b9cabc7b90e185708f/grpcio_reflection-1.68.0-py3-none-any.whl", hash = "sha256:09bfa16796c2629962979d4df69c4cfb34aceed6688caa17ddb27a2b7acd0495", size = 22690 },
+]
+
+[[package]]
 name = "grpcio-tools"
 version = "1.68.0"
 source = { registry = "https://pypi.org/simple" }
@@ -524,6 +537,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "grpcio" },
+    { name = "grpcio-reflection" },
     { name = "httpx", extra = ["http2"] },
     { name = "protobuf" },
     { name = "recipe-scrapers" },
@@ -539,6 +553,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "grpcio", specifier = ">=1.68.0" },
+    { name = "grpcio-reflection", specifier = ">=1.68.0" },
     { name = "httpx", extras = ["http2"], specifier = ">=0.27.0" },
     { name = "protobuf", specifier = ">=5.28.3" },
     { name = "recipe-scrapers", specifier = ">=15.1.0" },
